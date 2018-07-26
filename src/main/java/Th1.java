@@ -1,4 +1,20 @@
-package PACKAGE_NAME;
+public class Th1 extends Thread {
 
-public class Th1 {
+    Shared shared;
+
+    public Th1(Shared shared){
+        this.shared=shared;
+        start();
+    }
+
+    @Override
+    public void run() {
+
+        while (true) {
+            synchronized (shared) {
+                shared.x++;
+            }
+        }
+
+    }
 }

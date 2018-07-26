@@ -1,4 +1,21 @@
-package PACKAGE_NAME;
+public class Caller extends Thread {
 
-public class Caller {
+    CallMe callMe;
+    String msg;
+
+    public Caller(CallMe callMe, String msg){
+        this.callMe=callMe;
+        this.msg=msg;
+        start();
+    }
+
+    @Override
+    public void run(){
+        try{
+            synchronized (callMe){
+        callMe.getString(msg);
+            }
+        }catch (InterruptedException e){}
+
+    }
 }
